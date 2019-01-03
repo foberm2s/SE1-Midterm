@@ -7,7 +7,7 @@ import org.bonn.se.ws18.midterm.dtos.UserStoryDTO;
 
 public class AusgabeSortiert implements IDialog {
 
-    private List<UserStoryDTO> liste = null;
+    //private List<UserStoryDTO> liste = null;        ----> unnötig, aber in der ML!
 
 
     /*
@@ -23,7 +23,7 @@ public class AusgabeSortiert implements IDialog {
         }
 
         // Sortierung mit der Methode sort aus Collection:
-        Collections.sort( this.liste );
+        Collections.sort( liste );
 
         // Ausgabe ueber einen Iterartor (Ausgabe kann auch optimiert werden ;-)):
         Iterator<UserStoryDTO> i = liste.iterator();

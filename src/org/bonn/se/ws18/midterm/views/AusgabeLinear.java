@@ -8,7 +8,7 @@ import org.bonn.se.ws18.midterm.dtos.UserStoryDTO;
 
 public class AusgabeLinear implements IDialog {
 
-    private List<UserStoryDTO> liste = null;
+    //private List<UserStoryDTO> liste = null; ----> unnötig, aber in der ML!
 
 
 
@@ -22,7 +22,7 @@ public class AusgabeLinear implements IDialog {
 
 
         // Ausgabe ueber einen Iterartor (Ausgabe kann auch optimiert werden ;-)):
-        Iterator<UserStoryDTO> i = liste.iterator();
+        Iterator<UserStoryDTO> i = list.iterator();
         while (  i.hasNext() ) {
             UserStoryDTO p = i.next();
             System.out.println("Titel: " + p.getTitel());
@@ -30,7 +30,7 @@ public class AusgabeLinear implements IDialog {
 
             System.out.println("\n");
         }
-        System.out.println("Aktuelle Anzahl User Stories: " + liste.size() );
+        System.out.println("Aktuelle Anzahl User Stories: " + list.size() );
     }
 
 }

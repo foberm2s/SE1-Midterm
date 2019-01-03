@@ -32,7 +32,7 @@ public class Container {
     // auf das einzige Container-Objekt abzuspeichern
     private static Container instance = new Container();
 
-    private final static String LOCATION = "C:\\Users\\Frederik\\Documents\\Java Projekte\\SE1_8_ML\\userstories.txt";
+    private final static String LOCATION = ".\\userstories.txt";
 
     // Maximale Anzahl von UserStory-Objekten in einem Container
     private final static int MAX_ANZAHL = 20;
