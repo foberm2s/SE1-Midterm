@@ -87,7 +87,7 @@ public class Container {
      * Methode zur Ueberpruefung, ob ein Person-Objekt in der Liste enthalten ist
      *
      */
-    private boolean contains(UserStory r) {
+    public boolean contains(UserStory r) {
         int ID = r.getId();
         for ( UserStory rec : liste) {
             if ( rec.getId() == ID ) {
@@ -132,7 +132,7 @@ public class Container {
      * Interne Methode zur Ermittlung einer Person
      *
      */
-    private UserStory getUserStory(int id) {
+    public UserStory getUserStory(int id) {
         for ( UserStory rec : liste) {
             if (id == rec.getId() ){
                 return rec;

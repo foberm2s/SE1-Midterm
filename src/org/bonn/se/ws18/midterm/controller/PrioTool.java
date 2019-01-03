@@ -9,6 +9,7 @@ import org.bonn.se.ws18.midterm.commands.DumpCommand;
 import org.bonn.se.ws18.midterm.commands.EnterUserStoryCommand;
 import org.bonn.se.ws18.midterm.commands.ExitCommand;
 import org.bonn.se.ws18.midterm.commands.LoadCommand;
+import org.bonn.se.ws18.midterm.commands.SetStatusCommand;
 import org.bonn.se.ws18.midterm.commands.StoreCommand;
 import org.bonn.se.ws18.midterm.views.MyConsole;
 
@@ -52,6 +53,7 @@ public class PrioTool {
         commands.put("dump", new DumpCommand() );
         commands.put("store", new StoreCommand() );
         commands.put("load", new LoadCommand() );
+        commands.put("status", new SetStatusCommand() );
     }
 
     public void start(){
@@ -94,7 +96,7 @@ public class PrioTool {
                 if ( (command == null) ) {
                     System.out.println("Kommando " + strings[0] + " nicht unterstuetzt!");
                 } else {
-                    command.execute();
+                    command.execute(strings);
                 }
             }
         } // Ende der Schleife

@@ -11,7 +11,7 @@ public class EnterUserStoryCommand implements Command{
 
     private MyConsole console = null;
 
-    public void execute() {
+    public void execute(String[] args) {
         // erzeuge Console (moegliche Optimierung: Uebergabe als Parameter, Singleton...
         console = new MyConsole();
 
@@ -39,6 +39,7 @@ public class EnterUserStoryCommand implements Command{
         // Berechnung der Priorisierung
         double prio = Util.berechnePrio( mehrwert, strafe, aufwand, risk );
         System.out.println("User Story mit ID: " + id + " hat die Prio: " + prio);
+        
 
         // Neues Objekt vom Typ UserStory
         UserStory us = new UserStory( id, titel, mehrwert, strafe, aufwand, risk , prio );

@@ -45,7 +45,11 @@ public class MyConsole {
         // Umwandlung nach Integer --> int
         int id = 0;
         try {
-            id = new Integer( strInput ).intValue();
+        	
+            //id = new Integer( strInput ).intValue(); --> nicht mehr unterstützt in  java 9
+        	
+        	id = Integer.parseInt(strInput);  //alternativ
+        	
         } catch (java.lang.NumberFormatException e){
             System.out.println("Das ist keine Zahl!");
             return this.readLineInt(prompt);

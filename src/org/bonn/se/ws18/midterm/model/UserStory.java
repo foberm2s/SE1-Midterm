@@ -11,6 +11,7 @@ public class UserStory implements Comparable<UserStory>, Serializable {
     int risk = 0;
     int strafe = 0;
     double prio = 0.0;
+    Status status = null;
 
 
     public UserStory(int id, String titel, int mehrwert, int strafe,
@@ -22,6 +23,15 @@ public class UserStory implements Comparable<UserStory>, Serializable {
         this.aufwand = aufwand;
         this.risk = risk;
         this.prio = prio;
+        this.status = UserStory.Status.TODO;
+    }
+    
+    public void setStatus(Status s) {
+    	this.status = s;
+    }
+    
+    public UserStory.Status getStatus(){
+    	return this.status;
     }
 
     public double getPrio() {
@@ -84,6 +94,9 @@ public class UserStory implements Comparable<UserStory>, Serializable {
         }
         else return -1;
     }
-
+    
+    public enum Status implements Serializable{
+    	DONE,PROGRESS,TODO
+    }
 }
 

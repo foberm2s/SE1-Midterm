@@ -7,7 +7,7 @@ import org.bonn.se.ws18.midterm.model.UserStory;
 import org.bonn.se.ws18.midterm.views.AusgabeSortiert;
 public class DumpCommand implements Command{
     //TODO: umzusetzen nach Filter-Map-Reduce
-    public void execute() {
+    public void execute(String[] args) {
         Container container = Container.getInstance();
 
         // Ermittlung der aktuellen Geschaeftsobjekte (=Model)
@@ -27,4 +27,5 @@ public class DumpCommand implements Command{
         // }
 
     }
+    
 }
