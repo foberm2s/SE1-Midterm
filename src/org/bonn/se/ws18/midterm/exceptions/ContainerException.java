@@ -11,7 +11,7 @@ public class ContainerException extends Exception {
 
     @Override
     public void printStackTrace() {
-        System.out.println("Das Person-Objekt mit der ID " + this.id + " ist bereits vorhanden!");
+        System.out.println("Das UserStory-Objekt mit der ID " + this.id + " ist bereits vorhanden!");
     }
 
     public void addID(Integer id) {

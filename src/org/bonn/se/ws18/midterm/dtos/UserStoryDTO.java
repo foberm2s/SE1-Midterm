@@ -6,6 +6,8 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
 
     private String titel;
     private double prio;
+    private UserStory.Status status;
+    
     public String getTitel() {
         return titel;
     }
@@ -18,6 +20,12 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
     public void setPrio(double prio) {
         this.prio = prio;
     }
+	public UserStory.Status getStatus() {
+			return status;
+	}
+	public void setStatus(UserStory.Status status) {
+		this.status = status;
+	}
 
     /*
      * Methode zum Vergleich zweier UserStories.
@@ -34,5 +42,5 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
         }
         else return -1;
     }
-
+	
 }

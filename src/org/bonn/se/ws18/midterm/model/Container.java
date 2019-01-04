@@ -120,7 +120,7 @@ public class Container {
             UserStoryDTO dto = new UserStoryDTO();
             dto.setPrio( userStory.getPrio() );
             dto.setTitel( userStory.getTitel() );
-
+            dto.setStatus(userStory.getStatus());
             listeDTO.add(dto);
         }
 
