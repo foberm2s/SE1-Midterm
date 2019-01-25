@@ -38,11 +38,13 @@ public class EnterUserStoryCommand implements Command{
 
         // Berechnung der Priorisierung
         double prio = Util.berechnePrio( mehrwert, strafe, aufwand, risk );
-        System.out.println("User Story mit ID: " + id + " hat die Prio: " + prio);
-        
 
+
+        String actor = console.readLine("Registrieren Sie die Akteure (komma-separiert):  ");
+        String[] actors = actor.split(", ");
+        System.out.println("User Story mit ID: " + id + " hat die Prio: " + prio);
         // Neues Objekt vom Typ UserStory
-        UserStory us = new UserStory( id, titel, mehrwert, strafe, aufwand, risk , prio );
+        UserStory us = new UserStory( id, titel, mehrwert, strafe, aufwand, risk , prio, actors);
 
         // Abspeichern des PrioWertes:
         Container container = Container.getInstance();

@@ -4,13 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.bonn.se.ws18.midterm.commands.Command;
-import org.bonn.se.ws18.midterm.commands.DumpCommand;
-import org.bonn.se.ws18.midterm.commands.EnterUserStoryCommand;
-import org.bonn.se.ws18.midterm.commands.ExitCommand;
-import org.bonn.se.ws18.midterm.commands.LoadCommand;
-import org.bonn.se.ws18.midterm.commands.SetStatusCommand;
-import org.bonn.se.ws18.midterm.commands.StoreCommand;
+import org.bonn.se.ws18.midterm.commands.*;
+import org.bonn.se.ws18.midterm.model.CritAkteure;
+import org.bonn.se.ws18.midterm.model.CritKomma;
+import org.bonn.se.ws18.midterm.model.CritManager;
+import org.bonn.se.ws18.midterm.model.CritMehrwert;
 import org.bonn.se.ws18.midterm.views.MyConsole;
 
 
@@ -44,6 +42,7 @@ public class PrioTool {
     private void setupCommands() {
         // alle Commands werden in einer HashMap abgespeichert.
         commands = new HashMap<String,Command>();
+        CritManager p = CritManager.getInstance();
 
         // fuenf Commands werden gespeichert (ohne help)
         // Optimierung: Auslesen der Befehle aus den Command-Klasse
@@ -54,6 +53,15 @@ public class PrioTool {
         commands.put("store", new StoreCommand() );
         commands.put("load", new LoadCommand() );
         commands.put("status", new SetStatusCommand() );
+        commands.put("analyze", new AnalyzeCommand());
+        commands.put("addElement", new addElementCommand());
+        commands.put("actors", new ActorCommand());
+        CritKomma c1 = new CritKomma();
+        CritAkteure c2 = new CritAkteure();
+        CritMehrwert c3 = new CritMehrwert();
+        p.addCrit(c1);
+        p.addCrit(c2);
+        p.addCrit(c3);
     }
 
     public void start(){
@@ -93,7 +101,9 @@ public class PrioTool {
 
                 // Ermittelt das Kommando aus der HashMap, das ueber die Console eingegeben wurde
                 Command command = commands.get(strings[0]);
-                if ( (command == null) ) {
+                if (strings[0].equals("analyze")) {
+                    command.execute(strings);
+                } else if ( (command == null) ) {
                     System.out.println("Kommando " + strings[0] + " nicht unterstuetzt!");
                 } else {
                     command.execute(strings);

@@ -36,6 +36,7 @@ public class Container {
 
     // Maximale Anzahl von UserStory-Objekten in einem Container
     private final static int MAX_ANZAHL = 20;
+    private static ArrayList<String> actors;
 
     /*
      * Statische Methode um die einzige Instanz der Klasse
@@ -62,6 +63,9 @@ public class Container {
      */
     private Container(){
         liste = new ArrayList<UserStory>();
+        actors = new ArrayList<String>();
+        actors.add("Professor");
+        actors.add("Student");
 
     }
 
@@ -81,6 +85,9 @@ public class Container {
         }
         liste.add(r);
 
+    }
+    public List<UserStory> getUserStoryList(){
+        return liste;
     }
 
     /*
@@ -203,5 +210,20 @@ public class Container {
             if (fis != null) try { fis.close(); } catch (IOException e) {}
         }
     }
+    public void setActor(String s){
+        if (actors.contains(s)){
+            System.out.println("Akteur bereits bekannt");
+            return;
+        }
+        actors.add(s);
+        System.out.println("Akteur erfolgreich hinzugefuegt");
+    }
+    public ArrayList<String> getActors(){
+        return actors;
+    }
+
+
+
+
 
 }

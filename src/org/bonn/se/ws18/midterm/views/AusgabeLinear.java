@@ -8,7 +8,7 @@ import org.bonn.se.ws18.midterm.dtos.UserStoryDTO;
 
 public class AusgabeLinear implements IDialog {
 
-    //private List<UserStoryDTO> liste = null; ----> unnötig, aber in der ML!
+    //private List<UserStoryDTO> liste = null; ----> unnÃ¶tig, aber in der ML!
 
 
 

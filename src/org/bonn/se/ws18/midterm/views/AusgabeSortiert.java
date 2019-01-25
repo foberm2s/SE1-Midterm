@@ -31,7 +31,7 @@ public class AusgabeSortiert implements IDialog {
             UserStoryDTO p = i.next();
             System.out.println("Titel: " + p.getTitel());
             System.out.println("Prio: " + p.getPrio());
-            
+
 
             System.out.println("\n");
         }
