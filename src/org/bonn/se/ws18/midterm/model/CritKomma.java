@@ -14,19 +14,16 @@ public class CritKomma implements Criterias {
         }
         if (count == 0){
             x += 20;
-            String d = us.getDetails();
-            d  += "\n Keine Kommata zu erkennen (-20%)";
-            us.setDetails(d);
-            String h = us.getHints();
-            h += "\n Ist ihre User Story aussagekräftig genug?";
-            us.setHints(h);
+            String d = "\n Keine Kommata zu erkennen (-20%)";
+            us.setDetails(us.getDetails() + d);
+            String h = "\n Ist ihre User Story aussagekräftig genug?";
+            us.setHints(us.getHints() + h);
         } else if(count > 4){
             x += 25;
-            String d = us.getDetails();
-            d  += "\n Zu viele Kommata (-25%)";
-            us.setDetails(d);
-            String h = us.getHints();
-            h += "\n Ist ihre User Story zu komplex formuliert?";
+            String d = "\n Zu viele Kommata (-25%)";
+            us.setDetails(us.getDetails() + d);
+            String h = "\n Ist ihre User Story zu komplex formuliert?";
+            us.setHints(us.getHints() + h);
         }
         return x;
     }

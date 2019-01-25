@@ -13,11 +13,11 @@ public class CritAkteure implements Criterias {
 
             } else{
                 x += 20;
-                String d = us.getDetails();
-                d  += "\n Akteur ("+ s + ") nicht im System bekannt. (-20%)";
-                us.setDetails(d);
-                String h = us.getHints();
-                h += "\n Entfernen Sie den Akteur (" + s + ").";
+                String d  = "\n Akteur ("+ s + ") nicht im System bekannt. (-20%)";
+                us.setDetails(us.getDetails() + d);
+                String h =  "\n Entfernen Sie den Akteur (" + s + ").";
+                us.setHints(us.getHints() + h);
+
             }
         }
         return x;
