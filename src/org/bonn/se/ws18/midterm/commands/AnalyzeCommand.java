@@ -8,7 +8,7 @@ import java.util.List;
 public class AnalyzeCommand implements Command {
     //Analyze Befehl (US_MD_1) fuer das Midterm Projekt in SE1
 
-
+//hahahafdsfsdfw
     public void execute(String[] arr) {
         try {
             Container c = Container.getInstance();
