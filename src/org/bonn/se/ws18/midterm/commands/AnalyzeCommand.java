@@ -73,7 +73,8 @@ public class AnalyzeCommand implements Command {
                     e.printStackTrace();
                 }
             }
-
+            us.setHints("");
+            us.setDetails("");
         } catch (Exception e) {
             System.out.println("Ungueltige Eingabe");
             e.printStackTrace();
