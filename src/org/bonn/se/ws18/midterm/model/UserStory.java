@@ -6,7 +6,9 @@ import java.util.List;
 
 public class UserStory implements Comparable<UserStory>, Serializable {
 
-    String titel;
+	private static final long serialVersionUID = 1L;
+	
+	String titel;
     int aufwand = 0;
     int id = 0;
     int mehrwert = 0;

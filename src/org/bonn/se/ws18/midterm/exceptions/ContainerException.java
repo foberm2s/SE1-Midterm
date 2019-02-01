@@ -2,7 +2,7 @@ package org.bonn.se.ws18.midterm.exceptions;
 
 public class ContainerException extends Exception {
 
-    private String modus;
+	private static final long serialVersionUID = 1L;
     private Integer id;
 
     public ContainerException( String s ) {

@@ -10,25 +10,24 @@ import org.bonn.se.ws18.midterm.views.AusgabeSortiert;
 
 public class DumpCommand implements Command{
 
-	private UserStory.Status gesucht = null;
-	
+	private UserStory.Status gesucht = null;										// wenn in methode deklariert dann fehlermeldung, daher als instanzvariable.Aber warum?!
+																					//Fehlermeldung: Local variable gesucht in an enclosing scope must be final or effectivly final
     public void execute(String[] args) {
-    	
     	Container container = Container.getInstance();
 	    List<UserStoryDTO> liste = container.getCurrentListOfUserStoriesAsDTO();
 	    AusgabeSortiert ausgabe = new AusgabeSortiert( ); 
 	    
 	    
-        if(args.length == 1) {
+        if(args.length == 1) {															// einfacher dump OHNE filtern der UserStorys nach einem status (nur 'dump')
 	    	
         	ausgabe.display( liste );
 
         }
-        else if(args.length == 3 && args[1].equals("-status")){
+        else if(args.length == 4 && args[1].equals("-") && args[2].equals("status")){  //überprüfen syntax
         	
         	
         	
-        	switch(args[2]) {
+        	switch(args[3]) {														  // konvertierung String --> status objekt (nach welchem gefliter wird)
 	    	case "done":
 	    	case "Done":
 	    		gesucht = UserStory.Status.DONE;
@@ -41,21 +40,22 @@ public class DumpCommand implements Command{
 	    	case "Todo":
 	    	case "TODO":
 	    		gesucht = UserStory.Status.TODO;
-	    		break;
-	    	default:
-	    		System.out.println(args[2] + " ist kein gültiger Stautus. Bitte wählen Sie zwischen \"done\", \"progress\" und \"todo\". ");
+	    		break;																
+	    	default:																	// fehlerbehandlung bei Angabe eines ungültigen status
+	    		System.out.println(args[2] + 
+	    		" ist kein gültiger Stautus. Bitte wählen Sie zwischen \"done\", \"progress\" und \"todo\". ");
 	    		return;
 	    	}
         	
-        	liste = liste.stream()
-	 				  .filter(u -> u.getStatus().equals(gesucht))
+        	liste = liste.stream()														// Filtenr der Userstories mit dem gesuchten status (über stream.filter)
+	 				  .filter(u -> u.getStatus().equals(this.gesucht))
 				      .collect(Collectors.toList());
         	
         	System.out.println("Die Folgenden User Stories haben den Status \"" + this.gesucht +" \": \n" );
         	ausgabe.display(liste);
         }
-        else {
-        	System.out.println("Ungültiger Parameter! Usage: \"dump [-status [status]]\"" );
+        else {																			// Fehlerbehandlung bei falscher Syntax
+        	System.out.println("Ungültiger Parameter! Usage: \"dump [-status <status>]\"" ); 
         }
     }
     

@@ -1,14 +1,11 @@
 package org.bonn.se.ws18.midterm.views;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import org.bonn.se.ws18.midterm.dtos.UserStoryDTO;
 
 public class AusgabeLinear implements IDialog {
-
-    //private List<UserStoryDTO> liste = null; ----> unnötig, aber in der ML!
 
 
 

@@ -16,8 +16,8 @@ import org.bonn.se.ws18.midterm.views.MyConsole;
  * Tool zur Priorisierung von User Stories
  * (Musterloesung Uebung 4, WS 2015-16, Vorlesung SE-I)
  *
- * Diese Klasse repräsentiert laut MVC-Pattern den Controller,
- * zuständig für die Eingabe und für das Zusammenspiel zwischen
+ * Diese Klasse repraesentiert laut MVC-Pattern den Controller,
+ * zustaendig fuer die Eingabe und fuer das Zusammenspiel zwischen
  *
  * c/o Sascha Alda, H-BRS, 2015
  *
@@ -40,14 +40,10 @@ public class PrioTool {
      *
      */
     private void setupCommands() {
-        // alle Commands werden in einer HashMap abgespeichert.
-        commands = new HashMap<String,Command>();
-        CritManager p = CritManager.getInstance();
+        commands = new HashMap<String,Command>();					//alle Commands werden in einer HashMap abgespeichert.
+        CritManager p = CritManager.getInstance();					//alle Kriterien, nach denen eine User Story analysiert wird, werden im CritManager gespeichert.
 
-        // fuenf Commands werden gespeichert (ohne help)
-        // Optimierung: Auslesen der Befehle aus den Command-Klasse
-        // (hier ausgelassen zur besseren Illustration)
-        commands.put("exit", new ExitCommand() );
+        commands.put("exit", new ExitCommand() );					//setze die Commands in die Hashmap
         commands.put("enter", new EnterUserStoryCommand() );
         commands.put("dump", new DumpCommand() );
         commands.put("store", new StoreCommand() );
@@ -56,7 +52,7 @@ public class PrioTool {
         commands.put("analyze", new AnalyzeCommand());
         commands.put("addElement", new addElementCommand());
         commands.put("actors", new ActorCommand());
-        CritKomma c1 = new CritKomma();
+        CritKomma c1 = new CritKomma();								// erzeuge die konkreten Kriterien-Klassen und setzte diese in den Critmanager.
         CritAkteure c2 = new CritAkteure();
         CritMehrwert c3 = new CritMehrwert();
         p.addCrit(c1);
@@ -66,29 +62,28 @@ public class PrioTool {
 
     public void start(){
 
-        // Ausgabe eines Texts zur Begruessung
-        System.out.println("Prio-Tool V2.0");
+        
+        System.out.println("Prio-Tool V2.0");						// Ausgabe eines Texts zur Begruessung
         System.out.println("c/o Sascha Alda in 2015\n");
 
         String strInput = null;
 
-        // Initialisierung des Eingabe-View
-        MyConsole console = new MyConsole();
+        
+        MyConsole console = new MyConsole();						// Initialisierung des Eingabe-View
 
-        // So lange Eingaben getaetigt werden wird die Schleife durchlaufen.
-        while ( true ) {
+        
+        while ( true ) {											// So lange Eingaben getaetigt werden wird die Schleife durchlaufen.
             try {
                 strInput = console.readLine("> ");
 
             } catch (Exception e) {
             }
 
-            // Extrahiert ein Array aus der Eingabe
-            // (hiermit koennten auch Argumente extrahiert und den Commands uebergeben werden
-            String[] strings = strInput.split(" ");
+            														
+            String[] strings = strInput.split(" ");					// Extrahiert ein Array aus der Eingabe
+            														// (hiermit koennten auch Argumente extrahiert und den Commands uebergeben werden)
 
-            // Falls 'help' eingegeben wurde, werden alle Befehle ausgedruckt
-            if ( strings[0].equals("help") ) {
+            if ( strings[0].equals("help") ) {						// Falls 'help' eingegeben wurde, werden alle Befehle ausgedruckt
                 System.out.println("Folgende Befehle stehen zur Verfuegung:");
                 Set<String> kommandos = commands.keySet();
                 Iterator<String> it = kommandos.iterator();
@@ -99,8 +94,8 @@ public class PrioTool {
 
             } else {
 
-                // Ermittelt das Kommando aus der HashMap, das ueber die Console eingegeben wurde
-                Command command = commands.get(strings[0]);
+                
+                Command command = commands.get(strings[0]);			// Ermittelt das Kommando aus der HashMap, das ueber die Console eingegeben wurde
                 if (strings[0].equals("analyze")) {
                     command.execute(strings);
                 } else if ( (command == null) ) {
@@ -109,12 +104,10 @@ public class PrioTool {
                     command.execute(strings);
                 }
             }
-        } // Ende der Schleife
+        } 															// Ende der Schleife
     }
 
     public static void main (String[] args)  {
-        // System.out.println("Anzahl: " + args[0].toString() );
-
         PrioTool prio = new PrioTool( );
         prio.start();
     }

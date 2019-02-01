@@ -5,7 +5,7 @@ import org.bonn.se.ws18.midterm.model.*;
 public class SetStatusCommand implements Command {
 
 	public void execute(String[] args) {
-		if(args.length != 3) {
+		if(args.length != 3) {																	// fehlerbehandlung falsche parameterzahl
 			System.out.println("Falsche Parameteranzahl! Usage: \"status [id] [status]\" ");
 			return;
 		}
@@ -14,8 +14,8 @@ public class SetStatusCommand implements Command {
 		try {
 			id =  Integer.parseInt(args[1]);
 		}
-		catch (java.lang.NumberFormatException e) {
-			System.out.print(args[1]+ " ist keine Zahl! Usage: \"status [id] [status]\" ");
+		catch (java.lang.NumberFormatException e) {												// fehlerbehandlung wenn als id keine zahl angegeben wird
+			System.out.print(args[1]+ " ist keine Zahl! Usage: \"status [id] [status]\" ");		
 			return;
 		}
 		
@@ -23,31 +23,36 @@ public class SetStatusCommand implements Command {
 		UserStory u = container.getUserStory(id);
 		
 		if(u == null) {
-			System.out.println("User Story mit der id "+ id + " ist nicht vorhanden. Bitte wählen sie eine gültige ID.");
+			System.out.println("User Story mit der id "+ id + 									// fehlerbehandlung wenn die userstory mit der id nicht vorhanden ist
+					" ist nicht vorhanden. Bitte wählen sie eine gültige ID.");
 			return;
 		}
 		
-		else {
+		else {																					// konvertierung String --> status Objekt
 			UserStory.Status alterStatus = u.getStatus();
 			switch(args[2]) {
 	    	case "done":
 	    	case "Done":
 	    		u.setStatus( UserStory.Status.DONE);
-	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" + alterStatus.toString().toLowerCase() + "\" in \"done\" geändert!");
+	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" +
+	    		alterStatus.toString().toLowerCase() + "\" in \"done\" geändert!");
 	    		return;
 	    	case "progress":
 	    	case "Progress":
 	    		u.setStatus( UserStory.Status.PROGRESS);
-	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" + alterStatus.toString().toLowerCase() + "\" in \"progress\" geändert!");
+	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" +
+	    		alterStatus.toString().toLowerCase() + "\" in \"progress\" geändert!");
 	    		return;
 	    	case "todo":
 	    	case "Todo":
 	    	case "TODO":
 	    		u.setStatus( UserStory.Status.TODO);
-	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" + alterStatus.toString().toLowerCase() + "\" in \"todo\" geändert!");
+	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" +
+	    		alterStatus.toString().toLowerCase() + "\" in \"todo\" geändert!");
 	    		return;
-	    	default:
-	    		System.out.println(args[2] + " ist kein gültiger Stautus. Bitte wählen Sie zwischen \"done\", \"progress\" und \"todo\". ");
+	    	default:																			// fehlerbehandlung wenn kein gültiger status angegeben wurde
+	    		System.out.println(args[2] +
+	    		" ist kein gültiger Stautus. Bitte wählen Sie zwischen \"done\", \"progress\" und \"todo\". ");
 	    	}
 		}
 	}
