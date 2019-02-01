@@ -10,79 +10,72 @@ public class AnalyzeCommand implements Command {
 
 //hahahafdsfsdfw
     public void execute(String[] arr) {
-        try {
-            Container c = Container.getInstance();
-            //ich brauche hier im Container die Klasse getUserStory
-            //analyze 2, analyze 2 - details
-            UserStory us = c.getUserStory(Integer.parseInt(arr[1]));
-            us.setQual();
-            int qual = us.getQual();
-            if (arr.length > 3 || !arr[2].equals("all")) {
-                try {
+         	Container c = Container.getInstance();
+         	
+         	if(arr.length == 2 || (arr.length > 2 && !arr[2].equals("all"))) { //Fall 1: Es geht um eine spezifische UserStory
+         		
+         		UserStory us = null;
+         		try {
+         			us = c.getUserStory(Integer.parseInt(arr[1]));
+         		}
+         		catch (java.lang.NumberFormatException e) {						
+         			System.out.print(arr[1]+ " ist keine Ganzzahl!");		//Fehlerbehandlung: als ID wurde keine ganzzahl angegeben.
+         			return;
+         		}
+         		
+         		if(us == null) {
+         			System.out.print("arr[1] ist keine gültige id!");		//Fehlerbehandlung: ungültige ID
+         			return;
+         		}
+         		
+         		us.setQual();
+         		
+         		int qual = us.getQual();
+         		
+                System.out.println("Die User Story mit der ID " + arr[1] + 
+                		" hat die Qualitaet: \n" + qual + "% " + qualHelper(qual));
+                
+                if (arr.length >= 4 && arr[2].equals("-") && arr[3].equals("details")){  //Fall 1.2: Es geht um eine spezifische UserStory + details
+                    System.out.println("Details:");
+                    System.out.println(us.getDetails());
+                    System.out.print("\n");
 
-                    System.out.println("Die User Story mit der ID " + arr[1] + " hat die Qualitaet: \n" + qual + "% " + qualHelper(qual));
-                    if (arr.length < 4){
-                        return;
-                    }
-                    //
-                    if (arr[2].equals("-") && arr[3].equals("details")){
-                        System.out.println("Details: \n");
-                        System.out.println(us.getDetails());
-
-                    }
-                    if (arr.length < 6){
-                        return;
-                    }
-                    if (arr[4].equals("-") && arr[5].equals("hints")){
-                        System.out.println("Hints: \n");
-                        System.out.println(us.getHints());
-                    }
-                    //
-                    //
-                    if (arr[2].equals("-") && arr[3].equals("hints")){
-                        System.out.println("Hints: \n");
-                        System.out.println(us.getHints());
-
-                    }
-                    if (arr.length < 6){
-                        return;
-                    }
-                    if (arr[4].equals("-") && arr[5].equals("details")){
-                        System.out.println("Details: \n");
-                        System.out.println(us.getDetails());
-                    }
-                    //
-
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-            //analyze - all
-            } else if (arr[2].equals("all")) {
-                int x = 0;
-                try {
-                    List<UserStory> ls = c.getUserStoryList();
-                    int count = 0;
-                    for (UserStory u : ls) {
-                        ++count;
-                        x += u.getQual();
-                    }
-                    x /= count;
-                    System.out.println("Ihre " + ls.size() + " User Stories haben durchschnittlich folgende Qualitaet: \n" + (x / (ls.size())) + "% " + qualHelper(x));
-                } catch (Exception e) {
-                    System.out.println("Ungueltige Eingabe");
-                    e.printStackTrace();
+               
+                if (arr.length == 6 && arr[4].equals("-") && arr[5].equals("hints")){ //Fall 1.3 Es geht um eine spezifische UserStory + details + hints
+                        System.out.println("Hints:");
+                        System.out.println(us.getHints());
                 }
+                us.setHints("");													// reset details + hints
+                us.setDetails("");										
+                
+            } 
+         	else if (arr.length == 3 && arr[1].equals("-") && arr[2].equals("all")) {		// Fall 2: Es sollen alle UserStories analysiert werden.
+         		int x = 0;
+                List<UserStory> ls = c.getUserStoryList();
+                
+                if(ls.isEmpty()) {												//Fehlerbehandlung: Keine UserStories vorhanden
+                	System.out.print("Keine User Storys vorhanden!");
+                	return;
+                }
+                
+                int count = 0;
+                for (UserStory u : ls) {
+                     ++count;
+                     x += u.getQual();
+                }
+                double aus = x/count;
+                System.out.println("Ihre " + ls.size() + " User Stories haben durchschnittlich folgende Qualitaet: \n" + aus + "% " + qualHelper((int)Math.round(aus)));
             }
-            us.setHints("");
-            us.setDetails("");
-        } catch (Exception e) {
-            System.out.println("Ungueltige Eingabe");
-            e.printStackTrace();
-        }
-    }
+         	else {
+         		System.out.println("Falsche Syntax!"); 							// Fehlerbehandlung falsche Syntax
+         	}
+           
+    } 
+    
 
 
-    private String qualHelper(int a) throws Exception{
+    private String qualHelper(int a){
         if (a <= 100 && a >= 0) {
             if (a >= 90) {
                 return "(sehr gut)";
@@ -99,7 +92,7 @@ public class AnalyzeCommand implements Command {
             }
 
         } else{
-            throw new Exception("Ungueltige Prozentzahl: " + a);
+            return "(irgendwas stimmt mit dieser UserStory nicht.)";
         }
     }
 }
