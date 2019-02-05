@@ -29,24 +29,24 @@ public class SetStatusCommand implements Command {
 		}
 		
 		else {																					// konvertierung String --> status Objekt
-			UserStory.Status alterStatus = u.getStatus();
+			Status alterStatus = u.getStatus();
 			switch(args[2]) {
 	    	case "done":
 	    	case "Done":
-	    		u.setStatus( UserStory.Status.DONE);
+	    		u.setStatus( Status.DONE);
 	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" +
 	    		alterStatus.toString().toLowerCase() + "\" in \"done\" geändert!");
 	    		return;
 	    	case "progress":
 	    	case "Progress":
-	    		u.setStatus( UserStory.Status.PROGRESS);
+	    		u.setStatus(Status.PROGRESS);
 	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" +
 	    		alterStatus.toString().toLowerCase() + "\" in \"progress\" geändert!");
 	    		return;
 	    	case "todo":
 	    	case "Todo":
 	    	case "TODO":
-	    		u.setStatus( UserStory.Status.TODO);
+	    		u.setStatus( Status.TODO);
 	    		System.out.println("Der Status User Story mit der ID " + id + " wurde von \"" +
 	    		alterStatus.toString().toLowerCase() + "\" in \"todo\" geändert!");
 	    		return;

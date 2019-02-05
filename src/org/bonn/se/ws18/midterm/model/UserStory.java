@@ -33,7 +33,7 @@ public class UserStory implements Comparable<UserStory>, Serializable {
         this.aufwand = aufwand;
         this.risk = risk;
         this.prio = prio;
-        this.status = UserStory.Status.TODO;
+        this.status = Status.TODO;
         actors = new ArrayList<String>();
         for(String s: actor){
             this.actors.add(s);
@@ -44,7 +44,7 @@ public class UserStory implements Comparable<UserStory>, Serializable {
         this.status = s;
     }
 
-    public UserStory.Status getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
@@ -142,12 +142,6 @@ public class UserStory implements Comparable<UserStory>, Serializable {
             return 1;
         } else return -1;
     }
-
-    public enum Status implements Serializable {
-        DONE, PROGRESS, TODO
-    }
-
-
     //us_md_2, akteure adden
     public void setActors(String a) {
         actors.add(a);

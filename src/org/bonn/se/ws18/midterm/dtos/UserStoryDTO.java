@@ -1,12 +1,14 @@
 package org.bonn.se.ws18.midterm.dtos;
 
-import org.bonn.se.ws18.midterm.model.UserStory;
+import org.bonn.se.ws18.midterm.model.Status;
+
+//import org.bonn.se.ws18.midterm.model.UserStory;
 
 public class UserStoryDTO implements Comparable<UserStoryDTO> {
 
     private String titel;
     private double prio;
-    private UserStory.Status status;
+    private Status status;
     
     public String getTitel() {
         return titel;
@@ -20,10 +22,10 @@ public class UserStoryDTO implements Comparable<UserStoryDTO> {
     public void setPrio(double prio) {
         this.prio = prio;
     }
-	public UserStory.Status getStatus() {
+	public Status getStatus() {
 			return status;
 	}
-	public void setStatus(UserStory.Status status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

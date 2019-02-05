@@ -5,12 +5,13 @@ import java.util.stream.Collectors;
 
 import org.bonn.se.ws18.midterm.dtos.UserStoryDTO;
 import org.bonn.se.ws18.midterm.model.Container;
+import org.bonn.se.ws18.midterm.model.Status;
 import org.bonn.se.ws18.midterm.model.UserStory;
 import org.bonn.se.ws18.midterm.views.AusgabeSortiert;
 
 public class DumpCommand implements Command{
 
-	private UserStory.Status gesucht = null;										// wenn in methode deklariert dann fehlermeldung, daher als instanzvariable.Aber warum?!
+	private Status gesucht = null;										// wenn in methode deklariert dann fehlermeldung, daher als instanzvariable.Aber warum?!
 																					//Fehlermeldung: Local variable gesucht in an enclosing scope must be final or effectivly final
     public void execute(String[] args) {
     	Container container = Container.getInstance();
@@ -30,16 +31,16 @@ public class DumpCommand implements Command{
         	switch(args[3]) {														  // konvertierung String --> status objekt (nach welchem gefliter wird)
 	    	case "done":
 	    	case "Done":
-	    		gesucht = UserStory.Status.DONE;
+	    		gesucht = Status.DONE;
 	    		break;
 	    	case "progress":
 	    	case "Progress":
-	    		gesucht = UserStory.Status.PROGRESS;
+	    		gesucht = Status.PROGRESS;
 	    		break;
 	    	case "todo":
 	    	case "Todo":
 	    	case "TODO":
-	    		gesucht = UserStory.Status.TODO;
+	    		gesucht = Status.TODO;
 	    		break;																
 	    	default:																	// fehlerbehandlung bei Angabe eines ungültigen status
 	    		System.out.println(args[2] + 
