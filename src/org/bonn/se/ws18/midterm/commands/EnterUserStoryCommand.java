@@ -7,9 +7,11 @@ import org.bonn.se.ws18.midterm.model.UserStory;
 import org.bonn.se.ws18.midterm.util.*;
 import org.bonn.se.ws18.midterm.views.MyConsole;
 
-public class EnterUserStoryCommand implements Command{
+public class EnterUserStoryCommand implements Command, UndoableCommand{
 
     private MyConsole console = null;
+    
+    private Integer LastId = null;
 
     public void execute(String[] args) {
         // erzeuge Console (moegliche Optimierung: Uebergabe als Parameter, Singleton...
@@ -51,6 +53,7 @@ public class EnterUserStoryCommand implements Command{
 
         try {
             container.addUserStory( us );
+            LastId = id;
         } catch (ContainerException e) {
             e.printStackTrace();
         }
@@ -73,5 +76,23 @@ public class EnterUserStoryCommand implements Command{
         }
         return aufwand;
     }
+
+
+	@Override
+	public void undo() {
+		if(LastId == null) {
+			System.out.println("Nothing to Undo!");
+		}
+		else {
+			Container c = Container.getInstance();
+			if(c.removeUserStory(LastId)) {
+				System.out.println("User Story mit der ID " + LastId + " wurde entfernt");
+			}
+			else {
+				System.out.println("Die User Story wurde bereits entfernt/existiert nicht");
+			}
+		}
+		
+	}
 
 }

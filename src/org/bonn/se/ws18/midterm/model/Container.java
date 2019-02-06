@@ -199,7 +199,13 @@ public class Container {
         actors.add(s);
         System.out.println("Akteur erfolgreich hinzugefuegt");
     }
-   
+    public boolean removeActor(String s) {
+    	return actors.remove(s);
+    }
+    
+    public boolean removeUserStory(int id) {
+    	return liste.remove(this.getUserStory(id));
+    }
 
 
 

@@ -71,6 +71,7 @@ public class PrioTool {
         
         MyConsole console = new MyConsole();						// Initialisierung des Eingabe-View
 
+        CommandManager cm = CommandManager.getInstance();			// Initialisierung CommandManager
         
         while ( true ) {											// So lange Eingaben getaetigt werden wird die Schleife durchlaufen.
             try {
@@ -92,16 +93,18 @@ public class PrioTool {
                     System.out.println( it.next() ) ;
                 }
 
-            } else {
-
-                
+            } 
+            else if(strings[0].equals("undo")){
+            		
+            		cm.undo();
+            }
+            else {
+            	
                 Command command = commands.get(strings[0]);			// Ermittelt das Kommando aus der HashMap, das ueber die Console eingegeben wurde
-                if (strings[0].equals("analyze")) {
-                    command.execute(strings);
-                } else if ( (command == null) ) {
+                if ( (command == null) ) {
                     System.out.println("Kommando " + strings[0] + " nicht unterstuetzt!");
                 } else {
-                    command.execute(strings);
+                    cm.executeCommand(command,strings);
                 }
             }
         } 															// Ende der Schleife
