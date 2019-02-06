@@ -24,7 +24,7 @@ public class AnalyzeCommand implements Command {
          		}
          		
          		if(us == null) {
-         			System.out.print("arr[1] ist keine gültige id!");		//Fehlerbehandlung: ungültige ID
+         			System.out.print("arr[1] ist keine gueltige id!");		//Fehlerbehandlung: ungültige ID
          			return;
          		}
          		
