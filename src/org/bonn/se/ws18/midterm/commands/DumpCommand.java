@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.bonn.se.ws18.midterm.dtos.UserStoryDTO;
 import org.bonn.se.ws18.midterm.model.Container;
 import org.bonn.se.ws18.midterm.model.Status;
-import org.bonn.se.ws18.midterm.model.UserStory;
 import org.bonn.se.ws18.midterm.views.AusgabeSortiert;
 
 public class DumpCommand implements Command{

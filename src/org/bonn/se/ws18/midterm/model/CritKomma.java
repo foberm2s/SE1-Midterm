@@ -16,7 +16,7 @@ public class CritKomma implements Criterias {
             x += 20;
             String d = "\n Keine Kommata zu erkennen (-20%)";
              us.setDetails(us.getDetails() + d);
-            String h = "\n Ist ihre User Story aussagekräftig genug?";
+            String h = "\n Ist ihre User Story aussagekraeftig genug?";
             us.setHints(us.getHints() + h);
         } else if(count > 4){
             x += 25;
